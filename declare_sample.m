@@ -1,4 +1,5 @@
 
+%% 宣言と代入
 
 % 文字式は syms で宣言する
 syms x y
@@ -61,6 +62,84 @@ catch ME
     ME.message
     fprintf('f(3) によっては代入できない。行列アクセスのように挙動する\n')
 end
+
+%% 宣言と仮定
+
+% theta を角度, r を距離として宣言し、位置ベクトルを横ベクトルで定義する
+syms theta r
+position = r * [cos(theta), sin(theta)];
+
+% 位置ベクトルの自身との内積を計算する。 r^2を期待する
+% でもそうはならない
+position * position'
+
+% conj(r), conj(theta) は複素数を考慮している
+% そこで r, theta を実数だと仮定して計算する
+assume( theta, 'real' )
+assume( r, 'real' )
+position * position'
+
+% cos(theta)^2 + sin(theta)^2 = 1 は勝手に反映されてほしい
+% simplify によって単純化すると反映される
+simplify( position * position' )
+
+% 実は syms の時点で実数だと仮定できる
+syms theta r real
+position = r * [cos(theta), sin(theta)];
+simplify( position * position' )
+
+% 何かのパラメータである文字には仮定を適用できない
+syms theta(t) r(t) real
+position = r * [cos(theta), sin(theta)];
+simplify( position * position' )
+
+% 文字に仮定が設定できないのは微分を考慮する際に面倒になる。
+% 詳しくは TODO:replace<微分に関するファイル> を参照
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
