@@ -1,7 +1,7 @@
 function [Coeffs, Terms] = coeffs_Vector(sym_Vector,target_Variables)
 
 if ~iscolumn(sym_Vector)
-    error('sym_Vector は縦ベクトルである必要があります')
+    error('sym_Vector must be a column vector')
 end
 
 target_Variables = [target_Variables, 1];
