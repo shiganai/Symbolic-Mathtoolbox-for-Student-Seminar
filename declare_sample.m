@@ -93,6 +93,13 @@ syms theta(t) r(t) real
 position = r * [cos(theta), sin(theta)];
 simplify( position * position' )
 
+% assume の場合はエラーになる
+try
+    assume( theta, 'real' )
+catch ME
+    ME.message
+end
+
 % 文字に仮定が設定できないのは微分を考慮する際に面倒になる。
 % 詳しくは differential_sample.m を参照
 
