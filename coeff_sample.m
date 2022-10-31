@@ -23,6 +23,9 @@ catch ME
     ME.message
 end
 
+% 関数ベクトルに対して定義できないのは不便なので作った
+[Coeffs, Terms] = coeffs_Vector( f_vec, [x,y])
+isequal( f_vec, sum( Coeffs .* Terms, 2 ) )
 
 
 
