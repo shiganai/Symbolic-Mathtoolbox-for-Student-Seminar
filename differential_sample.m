@@ -61,8 +61,20 @@ end
 Netwon_eq_f = formula( Netwon_eq )
 Netwon_eq_f(2,1)
 
+%% 合成関数の微分について
 
+% パラメータに対して1回しか経由しない場合は問題ない
+syms x(t)
+f = x^2;
+diff(f,x)
+diff(f,t)
 
+% パラメータに対して2回またぐと0になる
+syms y(x)
+fy = y^2;
+diff(fy,y)
+diff(fy,x)
+diff(fy,t)
 
 
 
